@@ -1,6 +1,6 @@
 {
   "name": "dataset-translator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool for translating English datasets into Burmese using the Gemini API",
   "main": "index.js",
   "type": "module",
