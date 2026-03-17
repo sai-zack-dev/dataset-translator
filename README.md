@@ -1,20 +1,50 @@
 # Burmese Dataset Translator
 
-A simple command-line tool for translating English text datasets into Burmese using the Gemini API.
+A command-line tool for translating English text datasets into Burmese using the Gemini API.
 
-This tool is designed for AI/ML dataset preparation and supports batch translation, automatic error handling, and safe interruption when API limits are reached.
+This tool is designed for AI/ML dataset preparation and performs safe batch translation with automatic error handling and API limit protection.
 
 ---
 
 ## Features
 
 * Batch translation to reduce API requests
-* Token-aware batching for stable processing
+* Token-aware batching for reliable processing
 * Automatic retry for temporary API errors
-* Stops safely when API quota is exceeded
-* Saves translated and untranslated data separately
-* Professional CLI output with clear status messages
+* Safe stop when API quota is exceeded
+* Saves translated and untranslated rows separately
+* Clean command-line output
 * Works with CSV datasets
+
+---
+
+## Installation
+
+You can run the tool without cloning the repository.
+
+### Install Globally
+
+Install the CLI globally using npm:
+
+```bash
+npm install -g dataset-translator
+```
+
+After installation, run the tool from anywhere:
+
+```bash
+dataset-translator
+```
+
+---
+
+### Run Without Installing (npx)
+
+You can also run the tool directly using npx:
+
+```bash
+npx dataset-translator
+```
 
 ---
 
@@ -23,45 +53,15 @@ This tool is designed for AI/ML dataset preparation and supports batch translati
 * Node.js 18 or later
 * Gemini API key
 
-This tool uses the Google Gemini model:
+The translator uses the model:
 
 * Gemini 2.5 Flash
 
 ---
 
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/sai-zack-dev/dataset-translator.git
-cd dataset-translator
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
----
-
-## Dependencies
-
-This project uses the following packages:
-
-* prompts
-* ora
-* csv-parser
-* csv-writer
-* chalk
-* @google/generative-ai
-
----
-
 ## Dataset Format
 
-The CSV dataset must contain the following columns:
+Your CSV file must contain the following columns:
 
 | Column | Description                   |
 | ------ | ----------------------------- |
@@ -81,13 +81,13 @@ The movie was amazing.,1
 
 ## Usage
 
-Run the program:
+Run the command:
 
 ```bash
-node index.js
+dataset-translator
 ```
 
-The CLI will prompt for:
+The CLI will ask for:
 
 1. CSV dataset path
 2. Gemini API key
@@ -98,16 +98,16 @@ Example:
 Burmese Dataset Translator
 
 Enter CSV dataset path: example_dataset.csv
-Enter Gemini API Key: ********************
+Enter Gemini API Key: **********************
 ```
 
 ---
 
 ## Output
 
-The program generates translated CSV files in batches.
+The tool creates translated files in batches.
 
-Example:
+Example output:
 
 ```
 burmese_dataset_0-457.csv
@@ -115,61 +115,50 @@ burmese_dataset_457-855.csv
 untranslated_dataset_855-953.csv
 ```
 
-* `burmese_dataset_*` contains translated rows
-* `untranslated_dataset_*` contains rows that could not be translated due to API limits
+### File Types
+
+**Translated files**
+
+```
+burmese_dataset_*.csv
+```
+
+Contain translated Burmese text.
+
+**Untranslated files**
+
+```
+untranslated_dataset_*.csv
+```
+
+Contain rows that could not be translated due to API limits.
 
 ---
 
 ## Error Handling
 
-The tool includes automatic error handling for:
+The translator includes automatic protection against API issues.
 
 ### Temporary API Errors
 
-If a temporary error occurs, the program will retry the request.
+The tool retries automatically.
 
-### API Rate Limits
+### API Quota Exceeded
 
-If the Gemini API quota is exceeded:
+If the Gemini API quota is reached:
 
-* Translation stops immediately
-* Remaining rows are saved as `untranslated_dataset`
+* Translation stops safely
+* Remaining rows are saved to `untranslated_dataset`
 * No data is lost
 
 ---
 
-## Token Batching
+## Typical Workflow
 
-To prevent API failures, the program:
-
-* Estimates token usage
-* Groups rows into safe batches
-* Sends translation requests within token limits
-
-This ensures reliable processing even for large datasets.
-
----
-
-## Example Workflow
-
-1. Prepare dataset CSV
-2. Run translator
-3. Wait for batch processing
-4. Use translated dataset for machine learning training
-
----
-
-## Limitations
-
-Gemini free-tier limits apply.
-
-Typical limits include:
-
-* Request quota per day
-* Request rate per minute
-* Token limits per request
-
-Large datasets may require multiple runs.
+1. Prepare dataset CSV file
+2. Run the translator
+3. Wait for batch translation
+4. Use translated dataset for training or analysis
 
 ---
 
@@ -179,7 +168,7 @@ This tool is useful for:
 
 * Sentiment analysis datasets
 * NLP dataset localization
-* Multilingual AI training data
+* Multilingual AI training
 * Dataset augmentation
 
 ---
