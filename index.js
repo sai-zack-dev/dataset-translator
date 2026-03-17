@@ -249,6 +249,9 @@ async function main() {
       const start = translatedCount;
       const end = translatedCount + outputRows.length;
 
+      // Stop spinner before saving so [SUCCESS] prints on its own line
+      genSpinner.stop();
+
       await saveCSV(outputRows, start, end, "burmese_dataset");
 
       translatedCount += outputRows.length;
@@ -256,6 +259,9 @@ async function main() {
 
       batch = [];
       batchTokens = 0;
+
+      // Restart spinner for next batch
+      genSpinner.start();
 
       await sleep(REQUEST_DELAY);
     }
@@ -279,6 +285,9 @@ async function main() {
 
       const start = translatedCount;
       const end = translatedCount + outputRows.length;
+
+      // Stop spinner before saving so [SUCCESS] prints on its own line
+      genSpinner.stop();
 
       await saveCSV(outputRows, start, end, "burmese_dataset");
 
@@ -306,8 +315,6 @@ async function main() {
       process.exit(1);
     }
   }
-
-  genSpinner.stop();
 
   log.done("Translation completed.");
   log.info(`Total translated rows: ${translatedCount}`);
