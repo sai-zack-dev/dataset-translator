@@ -12,10 +12,6 @@ const MAX_BATCH_TOKENS = 6000;
 const REQUEST_DELAY = 1500;
 const RETRY_LIMIT = 2;
 
-/* -----------------------------
-   Professional Logger
-------------------------------*/
-
 const log = {
   info: (msg) => console.log(chalk.blue("[INFO]"), msg),
   success: (msg) => console.log(chalk.green("[SUCCESS]"), msg),

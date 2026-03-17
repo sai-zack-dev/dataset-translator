@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "burmese-dataset-translator": "./index.js"
+    "dataset-translator": "./index.js"
   },
   "keywords": [
     "ai",
