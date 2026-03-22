@@ -4,6 +4,8 @@ A command-line tool for translating English text datasets into Burmese using the
 
 This tool is designed for AI/ML dataset preparation and performs safe batch translation with automatic error handling and API limit protection.
 
+https://www.npmjs.com/package/dataset-translator
+
 ---
 
 ## Features
