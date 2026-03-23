@@ -172,9 +172,3 @@ This tool is useful for:
 * NLP dataset localization
 * Multilingual AI training
 * Dataset augmentation
-
----
-
-## License
-
-MIT License
